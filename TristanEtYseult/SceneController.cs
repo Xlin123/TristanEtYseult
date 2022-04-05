@@ -181,6 +181,7 @@ namespace TristanEtYseult
 
                 }
             }
+            //FIGHT SCENE!!!!
             else
             {
                 //fight mechanics
