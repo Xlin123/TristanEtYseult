@@ -37,7 +37,7 @@ namespace TristanEtYseult
                     break;
                 case "heavy":
                     hp = 8;
-                    weaponDamage = 4;
+                    weaponDamage = 6;
                     speed = 1;
                     armourStat = 3;
                     break;

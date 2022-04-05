@@ -8,13 +8,19 @@ namespace TristanEtYseult
 {
     class SceneController
     {
+        Player Tristan;
+        public SceneController(Player player)
+        {
+            Tristan = player;
+        }
+        
         public void loadScene(string sceneNum)
         {
             Console.WriteLine("\n \n \n"); //SCENE BUFFER
             switch (sceneNum)
             {
-                case "1-1":
-                    Console.WriteLine("First Scene: Fight the Dragon"); //path 1, 2
+                case "1-1":                  
+                    Console.WriteLine("First Scene: Fight the Dragon"); //path 1, 2                   
                     break;
                 case "1-2":
                     Console.WriteLine("Second Scene: Help Ysuelt \n ");
@@ -93,7 +99,7 @@ namespace TristanEtYseult
         }
 
 
-        public bool runScene(string sceneNum, bool fightScene)
+        public string runScene(string sceneNum, bool fightScene)
         {
             string nextScene = "";
             bool nextFight = false;
@@ -109,6 +115,7 @@ namespace TristanEtYseult
                 //returns 
                 switch (sceneNum)
                 {
+                        
                     case "1-2":
                         if (input == 'a')
                             nextScene = "2-1";
@@ -184,14 +191,47 @@ namespace TristanEtYseult
             //FIGHT SCENE!!!!
             else
             {
-                //fight mechanics
+                var battleLoop = true;
+                if(sceneNum == "1-1")
+                {
+                    var input = 0;
+                    Enemy dragon = new Enemy("dragon");
+                    Console.WriteLine("-----Tristan-----");
+                    Console.WriteLine("Tristan's health: " + Tristan.hp);
+                    Console.WriteLine("Tristan's attack: " + Tristan.weaponDamage + "\n \n");
+                    Console.WriteLine("--------Dragon stats-----------");
+                    Console.WriteLine("Dragon's health:" + dragon.hp);
+                    Console.WriteLine("Dragon's attack damage:" + dragon.weaponDamage);
+                    while (battleLoop)
+                    {
+                       
+                        Console.WriteLine("Choose an attack:");
+                        Console.WriteLine("1: Slash \n 2.Pierce \n 3.Bash");
+                        while (input != 1 || input != 2 || input != 3)
+                            input = Int32.Parse(Console.ReadLine());
+                        Tristan.attack(dragon, input);
+                        Tristan.attack(dragon, input);
+
+                        Console.WriteLine("--------Dragon stats-----------");
+                        Console.WriteLine("Dragon's health:" + dragon.hp);
+                        Console.WriteLine("Choose a defence:");
+                        Console.WriteLine("1: Block \n 2.Parry \n 3.Dodge");
+                        while (input != 1 || input != 2 || input != 3)
+                            input = Int32.Parse(Console.ReadLine());
+                        Tristan.defend(dragon, input);
+
+                        if (dragon.hp < 0)
+                            battleLoop = false;
+                    }
+                }
             }
 
-            loadScene(nextScene);
-            if (!runScene(nextScene, nextFight) || nextScene == "win" || nextScene == "loss")
-            {
-                return false;
-            }
+            if (nextScene == "win")
+                return "win";
+            else if (nextScene == "loss")
+                return "loss";
+            else
+                return nextScene;
         }
 
         public bool checkInput(string sceneNum, char input)
