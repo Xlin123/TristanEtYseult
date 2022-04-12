@@ -24,7 +24,7 @@ namespace TristanEtYseult
                     weapon = int.Parse(Console.ReadLine().Trim().Substring(0, 1));
 
                 Console.WriteLine("Choisissez maintenant l'armure que vous voulez porter (Choisissez en utilisant les chiffres) :");
-                Console.WriteLine("1. Un HAUBERT(2) \n2.Un HEAUME(3)");
+                Console.WriteLine("1. Un HAUBERT(2) \n2.Un HEAUME(3) et l'armure complète");
                 while (armour < 1 || armour > 3)
                     armour = int.Parse(Console.ReadLine().Trim().Substring(0, 1));
                 Player player = new Player(weapon, armour);

@@ -19,6 +19,9 @@ namespace TristanEtYseult
                 case "1-1":
                     Console.WriteLine("Première scène : Combattez le dragon !");
                     Console.WriteLine("Le dragon a une peau épaisse, mais vous voyez une zone où le dragon a été endommagé, indiquant un point faible. ");
+                    Console.WriteLine("Les ennemis reçoivent des points de dommage en fonction de deux facteurs : leur type d'armure et votre type d'attaque. \n (lacérer une armure faible, percer un haubert, frapper l'armure complète).");
+
+                    Console.WriteLine("Vous subissez des dommages en fonction du type d'arme de l'ennemi et du mouvement de défense que vous décidez d'utiliser. \n(bloquer les armes légères, parer les armes moyennes, éviter les armes lourdes).");
                     //path 1, 2                                                //  
                     break;
                 case "1-2":
@@ -222,6 +225,7 @@ namespace TristanEtYseult
             }
             if (nextScene == "6-1")
             {
+                Console.WriteLine("Le roi désarme son épée, et vous charge en armure complète.");
                 Enemy king = new Enemy("king");
                 Console.WriteLine("-----Tristan-----");
                 Console.WriteLine("Les points de vie de Tristan: " + Tristan.hp);
@@ -236,6 +240,7 @@ namespace TristanEtYseult
             }
             if (nextScene == "3-2")
             {
+                Console.WriteLine("Le roi désarme son épée, et vous charge en armure complète.");
                 Enemy king = new Enemy("king");
                 Console.WriteLine("-----Tristan-----");
                 Console.WriteLine("Les points de vie de Tristan: " + Tristan.hp);
@@ -255,6 +260,9 @@ namespace TristanEtYseult
                 Enemy light = new Enemy("light");
                 Enemy medium = new Enemy("medium");
                 Enemy heavy = new Enemy("heavy");
+
+
+                Console.WriteLine("Un combattant vous charge avec peu ou pas d'armure et une petite épée.");
                 Console.WriteLine("-----Tristan-----");
                 Console.WriteLine("Les points de vie de Tristan: " + Tristan.hp);
                 Console.WriteLine("La puissance d'attaque de Tristan: " + Tristan.weaponDamage + "\n");
@@ -263,6 +271,7 @@ namespace TristanEtYseult
                 Console.WriteLine("La puissance d'attaque du combatant" + light.weaponDamage);
                 if (fight(Tristan, light))
                 {
+                    Console.WriteLine("Un combattant vous charge avec une énorme épée et une armure complète !");
                     Console.WriteLine("-----Tristan-----");
                     Console.WriteLine("Les points de vie de Tristan: " + Tristan.hp);
                     Console.WriteLine("La puissance d'attaque de Tristan" + Tristan.weaponDamage + "\n ");
@@ -271,6 +280,7 @@ namespace TristanEtYseult
                     Console.WriteLine("La puissance d'attaque du combatant: " + heavy.weaponDamage);
                     if (fight(Tristan, heavy))
                     {
+                        Console.WriteLine("Un combattant vous charge avec une épée et un haubert !");
                         Console.WriteLine("-----Tristan-----");
                         Console.WriteLine("Les points de vie de Tristan: " + Tristan.hp);
                         Console.WriteLine("La puissance d'attaque de Tristan" + Tristan.weaponDamage + "\n ");
