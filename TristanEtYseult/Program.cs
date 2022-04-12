@@ -50,7 +50,7 @@ namespace TristanEtYseult
                         Console.WriteLine("Tristan est encore en vie et l'histoire est terminée. ");
                     }
                 }
-                Console.WriteLine("GAME OVER , DO YOU WANT TO PLAY AGIAN? (Enter Y/N) ");
+                Console.WriteLine("Voulez vous jouer encore? (Enter Y/N) ");
                 var again = Console.ReadLine().Trim().Substring(0).ToLower();
                 if (again == "N")
                 {
