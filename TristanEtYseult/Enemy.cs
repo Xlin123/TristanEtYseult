@@ -8,6 +8,7 @@ namespace TristanEtYseult
 {
     class Enemy
     {
+        public string name { get; set; }
         public int hp { get; set; }
         public int weaponDamage { get; set; }
         public int speed { get; set; }
@@ -15,13 +16,14 @@ namespace TristanEtYseult
 
         public Enemy(string type)
         {
+            name = type;
             switch (type)
             {
                 case "dragon":
                     hp = 20;
-                    weaponDamage = 5;
+                    weaponDamage = 1;
                     speed = 0;
-                    armourStat = 2;
+                    armourStat = 0;
                     break;
                 case "light":
                     hp = 5;
@@ -40,6 +42,12 @@ namespace TristanEtYseult
                     weaponDamage = 6;
                     speed = 1;
                     armourStat = 3;
+                    break;
+                case "king":
+                    hp = 8;
+                    weaponDamage = 5;
+                    speed = 2;
+                    armourStat = 4;
                     break;
             }
 

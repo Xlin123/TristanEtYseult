@@ -14,38 +14,38 @@ namespace TristanEtYseult
         public int speed { get; set; }
         public int armourStat { get; set; }
 
-        public Player(string weapon, string armour)
+        public Player(int weapon, int armour)
         {
             hp = 10;
             armourStat = 0;
             //weapons
             switch (weapon)
             {
-                case "greatsword":
-                    weaponDamage = 7;
+                case 1:
+                    weaponDamage = 5;
                     speed = 1;
                     break;
-                case "short sword and shield":
-                    weaponDamage = 3;
-                    armourStat += 2;
+                case 2:
+                    weaponDamage = 2;
+                    armourStat += 1;
                     speed = 4;
                     break;
-                case "mace":
-                    weaponDamage = 5;
+                case 3:
+                    weaponDamage = 3;
                     speed = 3;
                     break;
             }
 
 
             //armour
-            if(armour == "chainmail")
+            if(armour == 1)
             {
-                armourStat += 2;
+                armourStat += 1;
                 speed += 2;
             }
             else
             {
-                armourStat += 4;
+                armourStat += 2;
                 speed -= 1;
             }
 
@@ -94,41 +94,58 @@ namespace TristanEtYseult
             }
         }
 
-        //defence issues due to substracting negative numbers, which add to hp... 
+   
 
         public void defend(Enemy enemy, int input)
         {
             //block
             if (input == 1)
             {
-                if (enemy.armourStat == 1)
-                    hp -= (enemy.weaponDamage - armourStat);
+                if ((enemy.weaponDamage - armourStat) > 0)
+                {
+                    if (enemy.armourStat == 1)
+                        hp -= (enemy.weaponDamage - armourStat);
+                    else if (enemy.armourStat == 3)
+                        hp -= (enemy.weaponDamage - armourStat) + 1;
+                    else
+                        hp -= (enemy.weaponDamage - armourStat) - 1;
+                }
                 else
-                    hp -= (enemy.weaponDamage - armourStat) - 1;
+                    Console.WriteLine("Vous l'avez bloqué en utilisant votre armure, et n'avez subi aucun dommage.");
             }
 
 
             //parry
             else if (input == 2)
             {
-                if (enemy.armourStat == 0)
-                    hp -= (enemy.weaponDamage - armourStat);
-                else if (enemy.armourStat == 1)
-                    hp -= (enemy.weaponDamage - armourStat) + 1;
+                if ((enemy.weaponDamage - armourStat) > 0)
+                {
+                    if (enemy.armourStat == 0)
+                        hp -= (enemy.weaponDamage - armourStat);
+                    else if (enemy.armourStat == 1)
+                        hp -= (enemy.weaponDamage - armourStat) + 1;
+                    else
+                        hp -= (enemy.weaponDamage - armourStat) ;
+                }
                 else
-                    hp -= (enemy.weaponDamage - armourStat);
+                    Console.WriteLine("Vous l'avez bloqué en utilisant votre armure, et n'avez subi aucun dommage.");
             }
 
             //dodge
 
             else
             {
-                if (enemy.armourStat == 0)
-                    hp -= (enemy.weaponDamage - armourStat) - 1;
-                else if (enemy.armourStat == 1)
-                    hp -= (enemy.weaponDamage - armourStat);
+                if ((enemy.weaponDamage - armourStat) > 0)
+                {
+                    if (enemy.armourStat == 0)
+                        hp -= (enemy.weaponDamage - armourStat) - 1;
+                    else if (enemy.armourStat == 1)
+                        hp -= (enemy.weaponDamage - armourStat);
+                    else
+                        hp -= (enemy.weaponDamage - armourStat) + 1;
+                }
                 else
-                    hp -= (enemy.weaponDamage - armourStat) + 1;
+                    Console.WriteLine("Vous l'avez bloqué en utilisant votre armure, et n'avez subi aucun dommage.");
             }
         }
 
